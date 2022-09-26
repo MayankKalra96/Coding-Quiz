@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet" />
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight&family=Poppins&family=Manrope&display=swap" rel="stylesheet">
+        <link href="./assets/css/style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div style="display:block;">
+            <span style="float: left; padding: 8px; margin: 8px;">
+                <button class="mdc-button" onclick="showScores()" id="viewHighScores">
+                    <span class="mdc-button__label" style="
+                    font-family: 'Inter Tight', sans-serif; 
+                    font-size:large; 
+                    text-transform: none;">View high scores</span>
+                </button>
+            </span>
+            <span style="float: right; padding: 8px; margin: 8px;">
+                <span style="font-family: 'Poppins', sans-serif; font-size: large;" id="timer">Time: 0</span>
+            </span>
+        </div>
+        <div class="mainBody" style="display: block; height: 100%; width: 100%;">
+            <div id="WelcomePage" style="text-align: center; justify-content: center; ">
+                <div style="font-size:xx-large; font-weight:700;font-family: 'Poppins', sans-serif; 
+                padding-top: 120px;">
+                    Coding Quiz Challenge
+                </div>
+
+                <div style=" text-align: center; font-size:x-large; font-weight:500;font-family: 'Poppins', sans-serif; 
+                padding: 8px;">
+                    Try to answer the following code-related questions within the time limit.<br/>
+                    Keep in mind that incorrect answers will penalize your score/time by ten seconds.
+                </div>
+
+                <div style="padding: 8px;">
+                    <button onclick="initAll()" class="mdc-button mdc-button--raised mdc-button--leading" style="padding: 12px; width: 200px; height: 50px;">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">bolt</i>
+                        <span class="mdc-button__label" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                        font-weight: 600;font-size: large;">Start Quiz</span>
+                    </button>
+                </div>
+
+                <div style="margin-bottom: 20px; padding: 8px; 
+                position: absolute; width: 100%;
+                bottom: 0px; text-align: center; justify-content: center;
+                font-family: 'Inter Tight', sans-serif; 
+                font-size:large; 
+                text-transform: none;">
+                    All the best! ✌️
+                </div>
+            </div>
+            <div id="QuestionsPage" style="display:none;text-align:justify; justify-content:flex-start; width: 60%; ">
+                <div style="font-size:x-large; font-weight:700;font-family: 'Poppins', sans-serif; 
+                padding-top: 120px;padding-left: 50%; " id="quesMan">
+                 How is this?
+                </div>
+                <div class="buttonClass" style="padding-top: 8px;padding-left: 50%; ">
+                <button onclick="selectedOptOne()" class="mdc-button mdc-button--raised" id="buttonOne" style="margin: 8px;">
+                    <span class="mdc-button__label" id="optOne" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                    font-weight: 600;font-size: large;">Opt 1</span>
+                </button>
+                <br />
+                <button onclick="selectedOptTwo()"  class="mdc-button mdc-button--raised" id="buttonTwo" style="margin: 8px;">
+                    <span class="mdc-button__label" id="optTwo" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                    font-weight: 600;font-size: large;">Opt 2</span>
+                </button>
+                <br />
+                <button onclick="selectedOptThree()"  class="mdc-button mdc-button--raised" id="buttonThree" style="margin: 8px;">
+                    <span class="mdc-button__label" id="optThree" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                    font-weight: 600;font-size: large;">Opt 3</span>
+                </button>
+                <br />
+                <button onclick="selectedOptFour()"  class="mdc-button mdc-button--raised" id="buttonFour" style="margin: 8px;">
+                    <span class="mdc-button__label" id="optFour" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                    font-weight: 600;font-size: large;">Opt 4</span>
+                </button>
+                </div>
+            </div>
+
+            <div id="allDone" style="display: none;text-align:justify; justify-content:flex-start; width: 80%; " >
+
+                <div style="font-size:x-large; font-weight:700;font-family: 'Poppins', sans-serif; 
+                padding-top: 120px;padding-left: 30%; padding-bottom: 8px;">
+                    All done!
+                </div>
+
+                <div style="font-size:x-large; font-weight:500;font-family: 'Poppins', sans-serif; 
+                padding-left: 30%;">
+                <div id="totalScorePrint" style="padding-top: 8px;padding-bottom: 8px;">
+                    Your final score is 22.
+                </div>
+                <div>
+                    <span>
+                        Enter initials : 
+                    </span>
+                    <span>
+                        <label class="mdc-text-field mdc-text-field--outlined" style="height: 36px;">
+                        <span class="mdc-notched-outline">
+                          <span class="mdc-notched-outline__leading"></span>
+                          <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                        <input type="text" class="mdc-text-field__input" id="initials" aria-labelledby="my-label-id">
+                      </label>
+                    </span>
+
+                      <span><button onclick="getInitialAndStartAgain()" class="mdc-button mdc-button--raised mdc-button--leading" style="padding: 12px;">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">save</i>
+                        <span class="mdc-button__label" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                        font-weight: 600;font-size: large;">Submit</span>
+                    </button>
+                </span>
+                </div>
+                </div>
+            </div>
+
+
+            <div id="showScores"  style="display: none;text-align:justify; justify-content:flex-start; width: 80%; ">
+
+                <div style="font-size:x-large; font-weight:700;font-family: 'Poppins', sans-serif; 
+                padding-top: 120px;padding-left: 30%; padding-bottom: 8px;">
+                    High Scores
+                </div>
+
+                <div style="font-size:x-large; font-weight:500;font-family: 'Inter Tight', sans-serif; 
+                padding-top: 8px;padding-left: 30%; padding-bottom: 8px;" id="scoresList">
+                    
+                </div>
+
+                <div style="font-size:x-large; font-weight:500;font-family: 'Inter Tight', sans-serif; 
+                padding-top: 8px;padding-left: 30%; padding-bottom: 8px;">
+                    <button onclick="goBackFromScore()" class="mdc-button mdc-button--raised mdc-button--leading" style="padding: 12px; width: 200px; height: 50px;">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_left</i>
+                        <span class="mdc-button__label" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                        font-weight: 600;font-size: large;">Back</span>
+                    </button>
+                </div>
+
+
+                <div style="font-size:x-large; font-weight:500;font-family: 'Inter Tight', sans-serif; 
+                padding-top: 8px;padding-left: 30%; padding-bottom: 8px;">
+                    <button onclick="clearScores()" class="mdc-button mdc-button--raised mdc-button--leading" style="padding: 12px; width: 200px; height: 50px;">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>
+                        <span class="mdc-button__label" style="text-transform: none; font-family: 'Manrope', sans-serif; 
+                        font-weight: 600;font-size: large;">Clear Scores</span>
+                    </button>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <script src="./assets/js/script.js" ></script>
+    </body>
+</html>
