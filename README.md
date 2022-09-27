@@ -3,7 +3,7 @@ Coding Quiz Web Application which helps in answering JavaScript based questions.
 # How to
 1.  You need to open the web application through the link given below.
 
- > Here's the link to the [Web app](https://mayankkalra96.github.io/Coding-Quiz/)
+ > Here's the link to the [Web app]( https://mayankkalra96.github.io/Coding-quiz/)
 
 
 
